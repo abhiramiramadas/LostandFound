@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lost & Found | Home</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <nav>
+        <h2>Lost & Found</h2>
+    </nav>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search items...">
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" id="lostTab">LOST</button>
+        <button class="tab" id="foundTab">FOUND</button>
+        <a href="post.html" class="post-btn">+ Post Item</a>
+    </div>
+
+    <div id="itemsContainer" class="grid"></div>
+
+    <!-- Firebase v8 -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyASEF6hdQW2iYNN-CX_tpkmXJvxmsdmd8c",
+        authDomain: "lost-found-5cc74.firebaseapp.com",
+        projectId: "lost-found-5cc74",
+        storageBucket: "lost-found-5cc74.firebasestorage.app",
+        messagingSenderId: "1096076471192",
+        appId: "1:1096076471192:web:3fa7cd68cac0cca5ea99ed"
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      var db = firebase.firestore();
+    </script>
+
+    <script src="assets/js/main.js"></script>
+
+</body>
+</html>

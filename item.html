@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Item Details</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <a class="back" href="index.html">← Back</a>
+
+    <div id="itemContainer">Loading...</div>
+    <div id="matchesContainer"></div>
+
+    <!-- FIREBASE v8 SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyASEF6hdQW2iYNN-CX_tpkmXJvxmsdmd8c",
+        authDomain: "lost-found-5cc74.firebaseapp.com",
+        projectId: "lost-found-5cc74",
+        storageBucket: "lost-found-5cc74.firebasestorage.app",
+        messagingSenderId: "1096076471192",
+        appId: "1:1096076471192:web:3fa7cd68cac0cca5ea99ed"
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      var db = firebase.firestore();
+    </script>
+
+    <script src="assets/js/item.js"></script>
+
+</body>
+</html>

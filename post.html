@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Post Item</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <a class="back" href="index.html">← Back</a>
+
+    <h2>Post Lost / Found Item</h2>
+
+    <form id="postForm">
+
+        <label>Upload Photo</label>
+        <input type="file" id="imageFile" accept="image/*" required>
+
+        <label>Type:</label>
+        <div class="toggle">
+            <input type="radio" name="type" value="lost" checked> Lost
+            <input type="radio" name="type" value="found"> Found
+        </div>
+
+        <label>Location</label>
+        <input type="text" id="location" required>
+
+        <label>Description</label>
+        <textarea id="description" required></textarea>
+        <label>Category</label>
+        <select id="category" required>
+        <option value="">Select Category</option>
+        <option value="phone">📱 Phone</option>
+        <option value="id-card">💳 ID Card</option>
+        <option value="wallet">👛 Wallet</option>
+        <option value="bag">🎒 Bag</option>
+        <option value="keys">🔑 Keys</option>
+        <option value="book">📚 Book</option>
+        <option value="others">Other</option>
+        </select>
+
+
+        <label>Contact (optional)</label>
+        <input type="text" id="contact">
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+    <!-- FIREBASE v8 -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyASEF6hdQW2iYNN-CX_tpkmXJvxmsdmd8c",
+        authDomain: "lost-found-5cc74.firebaseapp.com",
+        projectId: "lost-found-5cc74",
+        storageBucket: "lost-found-5cc74.firebasestorage.app",
+        messagingSenderId: "1096076471192",
+        appId: "1:1096076471192:web:3fa7cd68cac0cca5ea99ed"
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      var db = firebase.firestore();
+    </script>
+
+    <script src="assets/js/post.js"></script>
+
+</body>
+</html>
