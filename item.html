@@ -6,15 +6,22 @@
 </head>
 <body>
 
-    <a class="back" href="index.html">← Back</a>
+    <a class="back" href="index.html" style="margin:10px;display:inline-block;">← Back</a>
 
-    <div id="itemContainer">Loading...</div>
-    <div id="matchesContainer"></div>
+    <div id="itemContainer" style="margin: 20px;">
+        Loading item details...
+    </div>
 
-    <!-- FIREBASE v8 SDK -->
+    <h3 style="margin-left: 20px;">Similar Items</h3>
+
+    <div id="matchesContainer" class="grid" style="margin: 20px;"></div>
+
+
+    <!-- Firebase v8 SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
+    <!-- Firebase Config -->
     <script>
       var firebaseConfig = {
         apiKey: "AIzaSyASEF6hdQW2iYNN-CX_tpkmXJvxmsdmd8c",
@@ -29,6 +36,7 @@
       var db = firebase.firestore();
     </script>
 
+    <!-- Item Page JS -->
     <script src="assets/js/item.js"></script>
 
 </body>

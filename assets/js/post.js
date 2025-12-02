@@ -3,7 +3,6 @@ const uploadPreset = "unsigned_preset";
 
 async function uploadImageToCloudinary(file) {
 const url = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
-const category = document.getElementById("category").value;
 
 
     const formData = new FormData();
@@ -31,6 +30,7 @@ document.getElementById("postForm").addEventListener("submit", async (e) => {
     const location = document.getElementById("location").value;
     const description = document.getElementById("description").value;
     const contact = document.getElementById("contact").value;
+    const category = document.getElementById("category").value;
 
 await db.collection("items").add({
     type,

@@ -1,56 +1,221 @@
+/* ⬛ FONT & RESET ------------------------------------------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background: #f6f6f6;
+  background: #0e0e0f;
+  color: white;
+  padding: 20px;
 }
 
-nav {
-    font-size: 24px;
-    font-weight: bold;
+/* ⬛ TITLE ------------------------------------------------------------- */
+h1, h2, h3, h4, h5 {
+  font-weight: 700;
 }
 
-.search-container input {
-    width: 100%;
-    padding: 10px;
-    margin: 15px 0;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+/* ⬛ NAV / HEADER ------------------------------------------------------ */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
 }
 
+header a {
+  color: #8fffbe;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+header a:hover {
+  opacity: 0.8;
+}
+
+/* ⬛ SEARCH BAR -------------------------------------------------------- */
+#searchInput {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 10px 0 20px 0;
+  background: #1c1c1e;
+  border: 2px solid #323234;
+  border-radius: 12px;
+  color: white;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+}
+
+#searchInput:focus {
+  border-color: #8fffbe;
+}
+
+/* ⬛ TABS --------------------------------------------------------------- */
 .tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
 }
 
-.tab, .post-btn {
-    padding: 10px 15px;
-    border: none;
-    background: #ddd;
-    border-radius: 6px;
-    cursor: pointer;
+.tabs div {
+  padding: 6px 14px;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 10px;
+  border: 2px solid #3d3d3f;
+  background: #161617;
+  transition: 0.2s;
 }
 
-.tab.active {
-    background: #007bff;
-    color: white;
+.tabs div.active {
+  background: #8fffbe;
+  color: #111;
+  border-color: #8fffbe;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
+/* ⬛ BENTO GRID FOR ITEMS ---------------------------------------------- */
+#itemsContainer, #matchesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 18px;
+  margin-top: 10px;
 }
 
+/* ⬛ ITEM CARD (NEOBRUTALISM) ------------------------------------------ */
 .card {
-    background: white;
-    padding: 10px;
-    border-radius: 8px;
+  background: #1a1a1c;
+  border: 3px solid #2c2c2f;
+  padding: 12px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 6px 6px 0px #8fffbe;
 }
 
 .card img {
-    width: 100%;
-    height: 130px;
-    object-fit: cover;
-    border-radius: 6px;
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #2c2c2f;
+}
+
+.card h4 {
+  font-size: 14px;
+  background: #8fffbe;
+  color: #111;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.card p {
+  font-size: 12px;
+  color: #cfcfcf;
+}
+
+/* ⬛ ITEM PAGE ----------------------------------------------------------- */
+#itemContainer {
+  background: #1a1a1c;
+  padding: 20px;
+  border-radius: 20px;
+  border: 3px solid #2c2c2f;
+  margin-bottom: 20px;
+}
+
+#itemContainer img {
+  width: 100%;
+  border-radius: 16px;
+  border: 3px solid #2c2c2f;
+  margin-bottom: 15px;
+}
+
+#itemContainer p {
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+/* ⬛ FORM PAGE ----------------------------------------------------------- */
+form {
+  background: #1a1a1c;
+  padding: 25px;
+  border-radius: 20px;
+  border: 3px solid #2c2c2f;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+form input, form select, form textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 2px solid #323234;
+  background: #111;
+  color: white;
+  font-size: 14px;
+  outline: none;
+}
+
+form input:focus, form select:focus, form textarea:focus {
+  border-color: #8fffbe;
+}
+
+button, .submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: #8fffbe;
+  border: none;
+  border-radius: 12px;
+  color: #111;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+/* ⬛ BACK BUTTON ---------------------------------------------------------- */
+.back {
+  display: inline-block;
+  margin-bottom: 12px;
+  text-decoration: none;
+  color: #8fffbe;
+  font-weight: 500;
+}
+
+.back:hover {
+  opacity: 0.7;
+}
+
+/* ⬛ MOBILE FIX ----------------------------------------------------------- */
+@media (max-width: 600px) {
+  #itemsContainer, #matchesContainer {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .card img {
+    height: 110px;
+  }
+
+  #itemContainer {
+    padding: 15px;
+  }
 }

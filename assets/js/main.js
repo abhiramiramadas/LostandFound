@@ -4,7 +4,7 @@ const foundTab = document.getElementById("foundTab");
 const searchInput = document.getElementById("searchInput");
 
 let currentType = "lost";
-let allItems = []; // store all loaded items for search
+let allItems = []; // store all loaded items for search & category filter
 
 // Load initial items
 loadItems(currentType);
@@ -36,8 +36,9 @@ function loadItems(type) {
       .orderBy("timestamp", "desc")
       .get()
       .then(snapshot => {
+
           itemsContainer.innerHTML = ""; 
-          allItems = []; // reset for search
+          allItems = []; // reset list
 
           if (snapshot.empty) {
               itemsContainer.innerHTML = "<p>No items yet.</p>";
@@ -46,14 +47,18 @@ function loadItems(type) {
 
           snapshot.forEach(doc => {
               const item = doc.data();
-              allItems.push({ id: doc.id, ...item }); // store for search
+              allItems.push({ id: doc.id, ...item });
           });
 
           displayItems(allItems);
+      })
+      .catch(err => {
+          console.error("Error loading items:", err);
+          itemsContainer.innerHTML = "<p>Error loading items.</p>";
       });
 }
 
-// DISPLAY ITEMS IN HTML
+// DISPLAY ITEMS ON HOMEPAGE
 function displayItems(items) {
     itemsContainer.innerHTML = "";
 
@@ -65,30 +70,30 @@ function displayItems(items) {
     items.forEach(item => {
         itemsContainer.innerHTML += `
         <div class="card" onclick="openItem('${item.id}')">
-            <img src="${item.imageURL}">
-<h4>${item.category.toUpperCase()}</h4>
-<p>${item.description.slice(0, 25)}...</p>
-
+            <img src="${item.imageURL}" alt="Item image">
+            <h4>${(item.category || "uncategorized").toUpperCase()}</h4>
+            <p>${item.description.slice(0, 30)}...</p>
             <p>📍 ${item.location}</p>
         </div>
         `;
     });
 }
 
-// SEARCH FILTER FUNCTION
+// SEARCH FUNCTION
 function filterItems() {
     const query = searchInput.value.toLowerCase();
 
     const filtered = allItems.filter(item =>
         item.description.toLowerCase().includes(query) ||
         item.location.toLowerCase().includes(query) ||
+        item.category.toLowerCase().includes(query) ||
         (item.contact || "").toLowerCase().includes(query)
     );
 
     displayItems(filtered);
 }
 
-// OPEN ITEM PAGE
+// OPEN ITEM DETAILS PAGE
 function openItem(id) {
     window.location.href = `item.html?id=${id}`;
 }

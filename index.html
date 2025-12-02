@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Lost & Found | Home</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+  <title>Lost & Found</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-    <nav>
-        <h2>Lost & Found</h2>
-    </nav>
+  <nav class="navbar">
+    <h1>Lost & Found</h1>
+    <a class="post-btn" href="post.html">+ Post Item</a>
+  </nav>
 
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search items...">
-    </div>
+  <div class="container">
+
+    <input type="text" id="searchInput" placeholder="Search items..." class="search-box">
 
     <div class="tabs">
-        <button class="tab active" id="lostTab">LOST</button>
-        <button class="tab" id="foundTab">FOUND</button>
-        <a href="post.html" class="post-btn">+ Post Item</a>
+      <button id="lostTab" class="active">Lost</button>
+      <button id="foundTab">Found</button>
     </div>
 
     <div id="itemsContainer" class="grid"></div>
 
-    <!-- Firebase v8 -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  </div>
 
-    <script>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+  <script>
       var firebaseConfig = {
         apiKey: "AIzaSyASEF6hdQW2iYNN-CX_tpkmXJvxmsdmd8c",
         authDomain: "lost-found-5cc74.firebaseapp.com",
@@ -35,12 +42,11 @@
         messagingSenderId: "1096076471192",
         appId: "1:1096076471192:web:3fa7cd68cac0cca5ea99ed"
       };
-
       firebase.initializeApp(firebaseConfig);
       var db = firebase.firestore();
-    </script>
+  </script>
 
-    <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js"></script>
 
 </body>
 </html>

@@ -1,16 +1,16 @@
 console.log("item.js loaded!");
 
-// Get ID
+// Get ID from URL
 const params = new URLSearchParams(window.location.search);
 const itemId = params.get("id");
 
 const itemContainer = document.getElementById("itemContainer");
 const matchesContainer = document.getElementById("matchesContainer");
 
-// If no ID provided
+// If no ID → show error
 if (!itemId) {
-    itemContainer.innerHTML = "<p>Invalid item URL.</p>";
-    throw new Error("missing item id");
+    itemContainer.innerHTML = "<p>Invalid item link.</p>";
+    throw new Error("Missing item ID");
 }
 
 // Load item details
@@ -22,9 +22,11 @@ db.collection("items").doc(itemId).get().then(doc => {
 
     const item = doc.data();
 
+    // Display main item details
     itemContainer.innerHTML = `
-        <img src="${item.imageURL}" style="width:100%;border-radius:8px;">
-        <h2>${item.type.toUpperCase()}</h2>
+        <img src="${item.imageURL}" style="width:100%;border-radius:10px;">
+        <h2>${(item.category || "uncategorized").toUpperCase()}</h2>
+        <p><b>Type:</b> ${item.type}</p>
         <p><b>Description:</b> ${item.description}</p>
         <p><b>Location:</b> ${item.location}</p>
         <p><b>Contact:</b> ${item.contact || "None"}</p>
@@ -36,7 +38,8 @@ db.collection("items").doc(itemId).get().then(doc => {
 // Load similar items intelligently
 function loadSimilar(currentItem) {
 
-    // Opposite type increases chance of real match
+    // Opposite type usually gives true matches:
+    // e.g., LOST → show FOUND items of same category
     const oppositeType = currentItem.type === "lost" ? "found" : "lost";
 
     db.collection("items")
@@ -53,29 +56,30 @@ function loadSimilar(currentItem) {
 
               const item = doc.data();
 
-              // Simple matching logic
-              const descMatch = item.description.toLowerCase().includes(
-                    currentItem.description.split(" ")[0].toLowerCase()
-              );
+              // Matching logic
+              const sameCategory = item.category === currentItem.category;
+              const similarWord = item.description
+                                    .toLowerCase()
+                                    .includes(currentItem.description.split(" ")[0].toLowerCase());
+              const sameLocation = item.location.toLowerCase() === currentItem.location.toLowerCase();
 
-              const locMatch = item.location.toLowerCase() === currentItem.location.toLowerCase();
-
-              if (descMatch || locMatch) {
+              // If ANY of these match → it's a similar item
+              if (sameCategory || similarWord || sameLocation) {
                   matches.push({ id: doc.id, ...item });
               }
           });
 
-          // If still no matches, show nothing
           if (matches.length === 0) {
               matchesContainer.innerHTML = "<p>No similar items found.</p>";
               return;
           }
 
-          // Display matches
+          // Display similar items
           matches.forEach(item => {
               matchesContainer.innerHTML += `
                 <div class="card" onclick="openItem('${item.id}')">
                     <img src="${item.imageURL}">
+                    <h4>${item.category.toUpperCase()}</h4>
                     <p>${item.location}</p>
                 </div>
               `;
@@ -83,6 +87,7 @@ function loadSimilar(currentItem) {
       });
 }
 
+// Go to another item
 function openItem(id) {
     window.location.href = `item.html?id=${id}`;
 }
