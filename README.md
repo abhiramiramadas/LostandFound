@@ -113,6 +113,16 @@ Now they can meet… digitally.
 ==================
 
 _(not done)_
+---
+## 👩‍💻 Author
+
+**Abhirami Ramadas**
+
+B.Tech Information Technology
+
+LBS Institute of Technology for Women
+---
+
 
 🙃 **Contributing**
 ===================
@@ -130,3 +140,4 @@ But not bugs. We have enough.Just don’t break anything.Or do.Who am I to stop 
 
 
 But at least now there's a website for it.You're welcome. 😌💛
+
